@@ -1,20 +1,12 @@
-[build.environment]
-  NETLIFY_USE_YARN = "true"
-  YARN_VERSION = "1.22.17"
-
 [build]
-  command = "yarn build"
-  publish = "dist"
+publish = "."  # Указываем корень проекта
 
-[context.deploy-preview]
-  command = "yarn build:preview"
+[[redirects]]
+from = "/dashboard"  # Для маршрута /dashboard
+to = "/dashboard.html"  # Перенаправляем на страницу dashboard.html
+status = 200
 
-[dev]
-  framework = "hugo"
-  targetPort = 3000
-
-[[plugins]]
-  package = "netlify-plugin-cypress"
-
-  [plugins.inputs]
-    record = true
+[[redirects]]
+from = "/*"  # Перенаправляем все остальные маршруты на index.html
+to = "/index.html"
+status = 200
